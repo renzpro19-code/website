@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RennModz - Pengalihan | Futuristik</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 50%, #0a0a0f, #050508);
+            font-family: 'Segoe UI', 'Poppins', 'Orbitron', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Efek grid futuristik */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(128, 0, 255, 0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(128, 0, 255, 0.08) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+
+        /* Efek glow berjalan */
+        .glow-line {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #9b4dff, #c77dff, #9b4dff, transparent);
+            animation: slideGlow 3s linear infinite;
+        }
+
+        @keyframes slideGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 40px;
+            background: rgba(10, 10, 20, 0.65);
+            backdrop-filter: blur(12px);
+            border-radius: 48px;
+            border: 1px solid rgba(155, 77, 255, 0.4);
+            box-shadow: 0 0 60px rgba(155, 77, 255, 0.2), inset 0 0 20px rgba(155, 77, 255, 0.05);
+            max-width: 550px;
+            width: 90%;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ikon hologram */
+        .hologram-icon {
+            font-size: 70px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px #9b4dff);
+            animation: pulseIcon 2s infinite alternate;
+        }
+
+        @keyframes pulseIcon {
+            0% {
+                text-shadow: 0 0 5px #9b4dff;
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 0 0 25px #c77dff;
+                transform: scale(1.05);
+            }
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff, #c77dff, #9b4dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .target-url {
+            font-size: 22px;
+            font-weight: bold;
+            color: #c77dff;
+            background: rgba(155, 77, 255, 0.15);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            letter-spacing: 1px;
+            margin: 15px 0;
+            border: 1px solid rgba(155, 77, 255, 0.5);
+            word-break: break-all;
+        }
+
+        .info-status {
+            font-size: 18px;
+            margin: 20px 0 10px;
+            color: #ddd;
+            background: rgba(0,0,0,0.5);
+            padding: 12px;
+            border-radius: 32px;
+            display: inline-block;
+            width: auto;
+        }
+
+        .jadwal {
+            color: #ffb86b;
+            font-weight: bold;
+            background: rgba(255, 184, 107, 0.1);
+            padding: 6px 16px;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 5px 0;
+            font-size: 17px;
+        }
+
+        /* Timer futuristik */
+        .timer-box {
+            margin: 35px 0 20px;
+        }
+
+        .timer-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .countdown {
+            font-family: 'Orbitron', monospace;
+            font-size: 58px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #c77dff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(155,77,255,0.5);
+            letter-spacing: 4px;
+        }
+
+        .countdown span {
+            font-size: 28px;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            color: #c77dff;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(155, 77, 255, 0.3);
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #9b4dff, #c77dff);
+            border-radius: 10px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 6px #9b4dff;
+        }
+
+        .redirect-message {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 20px;
+            border-top: 1px dashed rgba(155,77,255,0.3);
+            padding-top: 18px;
+        }
+
+        button {
+            background: rgba(155, 77, 255, 0.2);
+            border: 1px solid #9b4dff;
+            color: #c77dff;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-family: monospace;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+        }
+
+        button:hover {
+            background: #9b4dff;
+            color: #0a0a0f;
+            box-shadow: 0 0 15px #9b4dff;
+            border-color: #fff;
+        }
+
+        /* Efek partikel random (sederhana) */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #c77dff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 8s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes floatParticle {
+            0% { opacity: 0; transform: translateY(0px) scale(0.5);}
+            20% { opacity: 0.6;}
+            80% { opacity: 0.3;}
+            100% { opacity: 0; transform: translateY(-200px) scale(1.2);}
+        }
+    </style>
+</head>
+<body>
+
+<div class="glow-line"></div>
+<div class="container">
+    <div class="hologram-icon">⚡🌀</div>
+    <h1 class="title">WEBSITE PINDAH</h1>
+    <div class="target-url">⟡ rennmodz.my.id ⟡</div>
+    <div class="info-status">
+        <span>🚀 Sedang dialihkan secara otomatis</span>
+    </div>
+    <div class="jadwal">
+        📅 ONLINE: KAMIS / JUMAT
+    </div>
+
+    <div class="timer-box">
+        <div class="timer-label">⌛ REDIRECT DALAM</div>
+        <div class="countdown">
+            <span id="detik">60</span> detik
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <div class="redirect-message">
+        ⚡ Jika tidak otomatis, klik tombol di bawah ⚡<br>
+        <button id="redirectNowBtn">ALIHKAN SEKARANG →</button>
+    </div>
+    <div style="margin-top: 12px; font-size: 12px; opacity: 0.7;">#NeoFuturism #RennModz</div>
+</div>
+
+<script>
+    // Waktu dalam detik (60 detik / 1 menit)
+    let timeLeft = 60;
+    const targetUrl = "https://rennmodz.my.id";
+    const countdownElement = document.getElementById("detik");
+    const progressFill = document.getElementById("progressFill");
+    const redirectBtn = document.getElementById("redirectNowBtn");
+
+    // Fungsi untuk melakukan redirect
+    function redirectToSite() {
+        window.location.href = targetUrl;
+    }
+
+    // Update timer dan progress bar setiap detik
+    const interval = setInterval(() => {
+        if (timeLeft <= 1) {
+            // Waktu habis -> redirect
+            clearInterval(interval);
+            redirectToSite();
+        } else {
+            timeLeft--;
+            countdownElement.innerText = timeLeft;
+            // Update progress bar (total 60 detik)
+            const percent = ((60 - timeLeft) / 60) * 100;
+            progressFill.style.width = percent + "%";
+        }
+    }, 1000);
+
+    // Tombol manual langsung redirect
+    redirectBtn.addEventListener("click", () => {
+        clearInterval(interval); // hentikan timer biar ga double redirect
+        redirectToSite();
+    });
+
+    // Efek partikel random untuk nuansa futuristik (opsional)
+    function createParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 3 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * window.innerWidth + 'px';
+        particle.style.bottom = '0px';
+        particle.style.animationDuration = Math.random() * 5 + 3 + 's';
+        particle.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 8000);
+    }
+    
+    setInterval(createParticle, 400);
+</script>
+
+</body>
+</html>
